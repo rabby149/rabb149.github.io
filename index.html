@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A minimal daily expense tracker to help you stay on budget.">
+    <title>Daily Expense Tracker</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 28px;
+            background: linear-gradient(to right, #a8c0ff, #3f2b96);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-weight: 300;
+            margin-bottom: 25px;
+            color: #b0b0c0;
+            font-size: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .row .input-group {
+            flex: 1;
+            margin-bottom: 5px; /* Adjust margin due to gap */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #cbd5e1;
+            font-weight: 400;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 14px;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        select option {
+            background: #24243e;
+            color: white;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        input:focus, select:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.6);
+            background: linear-gradient(135deg, #b86af8 0%, #f061a5 100%);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(236, 72, 153, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+
+        .btn-reset {
+            background: rgba(248, 113, 113, 0.1);
+            color: #f87171;
+            box-shadow: none;
+        }
+        .btn-reset:hover {
+            background: rgba(248, 113, 113, 0.2);
+            box-shadow: none;
+        }
+
+        .expense-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+            max-height: 150px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .expense-item {
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+            border-left: 4px solid #a855f7;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .expense-item-category {
+            font-weight: 300;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .expense-item-amount {
+            font-weight: 600;
+        }
+
+        .result-message {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            line-height: 1.5;
+        }
+
+        .result-success {
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            color: #4ade80;
+        }
+
+        .result-danger {
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            color: #f87171;
+        }
+
+        .result-warning {
+            background: rgba(250, 204, 21, 0.1);
+            border: 1px solid rgba(250, 204, 21, 0.3);
+            color: #facc15;
+        }
+        
+        /* Scrollbar styles */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Expense Tracker</h1>
+    <p>Keep your daily spending in check</p>
+
+    <div class="row">
+        <div class="input-group">
+            <label for="currencySelect">Currency</label>
+            <select id="currencySelect">
+                <option value="$">USD ($)</option>
+                <option value="₩">KRW (₩)</option>
+                <option value="€">EUR (€)</option>
+                <option value="£">GBP (£)</option>
+                <option value="¥">JPY (¥)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="budgetInput">Daily Budget Limit</label>
+            <input type="number" id="budgetInput" placeholder="e.g. 50" min="0" step="0.01" value="50">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-group">
+            <label for="categorySelect">Category</label>
+            <select id="categorySelect">
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="expenseInput">Amount Spent</label>
+            <input type="number" id="expenseInput" placeholder="e.g. 40" min="0" step="0.01">
+        </div>
+    </div>
+    
+    <button onclick="addExpense()" class="btn-secondary">Add Expense</button>
+
+    <ul id="expensesList" class="expense-list">
+        <!-- JS injected items -->
+    </ul>
+
+    <div class="button-group">
+        <button onclick="calculateTotal()" id="calculateBtn">Calculate Total</button>
+        <button onclick="resetForm()" class="btn-reset" id="resetBtn">Reset All</button>
+    </div>
+    <div id="resultMessage" class="result-message"></div>
+</div>
+
+<script>
+    let expenses = [];
+
+    function addExpense() {
+        const expenseInput = document.getElementById('expenseInput');
+        const categorySelect = document.getElementById('categorySelect');
+        const currencySym = document.getElementById('currencySelect').value;
+        const resultDiv = document.getElementById('resultMessage');
+        
+        const spent = parseFloat(expenseInput.value);
+        const category = categorySelect.value;
+        
+        if (isNaN(spent) || spent <= 0) {
+            resultDiv.innerText = 'Please enter a valid expense amount.';
+            resultDiv.className = 'result-message result-danger';
+            showResult();
+            return;
+        }
+
+        // Add to array
+        expenses.push({ amount: spent, category: category });
+        
+        // Hide error message if existed
+        resultDiv.style.opacity = 0;
+        setTimeout(() => { resultDiv.style.display = 'none'; }, 300);
+
+        // Update UI list
+        renderExpenses(currencySym);
+
+        // Reset inputs
+        expenseInput.value = '';
+        expenseInput.focus();
+    }
+
+    function renderExpenses(currencySym) {
+        const list = document.getElementById('expensesList');
+        list.innerHTML = '';
+        
+        expenses.forEach((exp, index) => {
+            const li = document.createElement('li');
+            li.className = 'expense-item';
+            li.innerHTML = `
+                <span class="expense-item-category">${exp.category}</span>
+                <span class="expense-item-amount">${currencySym}${exp.amount.toFixed(2)}</span>
+            `;
+            list.appendChild(li);
+        });
+    }
+
+    function calculateTotal() {
+        const budgetField = document.getElementById('budgetInput');
+        const currencySym = document.getElementById('currencySelect').value;
+        const resultDiv = document.getElementById('resultMessage');
+        
+        const budget = parseFloat(budgetField.value);
+
+        if (isNaN(budget) || budget < 0) {
+            resultDiv.innerText = 'Please enter a valid daily budget limit.';
+            resultDiv.className = 'result-message result-danger';
+            showResult();
+            return;
+        }
+
+        if (expenses.length === 0) {
+            resultDiv.innerText = 'Please add at least one expense before calculating.';
+            resultDiv.className = 'result-message result-danger';
+            showResult();
+            return;
+        }
+
+        const totalSpent = expenses.reduce((sum, current) => sum + current.amount, 0);
+
+        if (totalSpent <= budget) {
+            const remaining = (budget - totalSpent).toFixed(2);
+            const spentPercentage = (totalSpent / budget) * 100;
+            
+            if (spentPercentage >= 80) {
+                resultDiv.innerText = `Careful! You spent a total of ${currencySym}${totalSpent.toFixed(2)}. You are nearing your limit. ${currencySym}${remaining} left.`;
+                resultDiv.className = 'result-message result-warning';
+            } else {
+                resultDiv.innerText = `You spent ${currencySym}${totalSpent.toFixed(2)} in total. You have ${currencySym}${remaining} left.`;
+                resultDiv.className = 'result-message result-success';
+            }
+        } else {
+            const overspent = (totalSpent - budget).toFixed(2);
+            resultDiv.innerText = `You overspent! Total is ${currencySym}${totalSpent.toFixed(2)}, exceeding your budget by ${currencySym}${overspent}.`;
+            resultDiv.className = 'result-message result-danger';
+        }
+        
+        showResult();
+    }
+
+    function showResult() {
+        const resultDiv = document.getElementById('resultMessage');
+        resultDiv.style.display = 'block';
+        setTimeout(() => {
+            resultDiv.style.opacity = 1;
+        }, 10);
+    }
+
+    function resetForm() {
+        document.getElementById('budgetInput').value = '50';
+        document.getElementById('expenseInput').value = '';
+        document.getElementById('categorySelect').value = 'Food';
+        expenses = [];
+        renderExpenses('');
+        const resultDiv = document.getElementById('resultMessage');
+        resultDiv.style.opacity = 0;
+        setTimeout(() => {
+            resultDiv.style.display = 'none';
+        }, 300);
+    }
+
+    // Add enter key support
+    document.getElementById('expenseInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            addExpense();
+        }
+    });
+
+    document.getElementById('budgetInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            calculateTotal();
+        }
+    });
+    
+    // Automatically re-render list if currency changes
+    document.getElementById('currencySelect').addEventListener('change', function() {
+        renderExpenses(this.value);
+    });
+</script>
+</body>
+</html>
