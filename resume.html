@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Interactive Resume of RABBY FOZLE - Computer Software Student. View education history and interactive tech projects.">
+    <meta name="author" content="RABBY FOZLE">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="RABBY FOZLE | Interactive Resume">
+    <meta property="og:description" content="Explore RABBY FOZLE's education, projects, and portfolio.">
+    <meta property="og:type" content="website">
+    
+    <title>RABBY FOZLE | Interactive Resume</title>
+    <link rel="stylesheet" href="resume.css">
+</head>
+<body data-theme="dark">
+
+    <!-- Glowing Background blobs -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="header">
+        <div class="nav-container">
+            <a href="#hero" class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                <span>Rabby.tech</span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle Theme">
+                    <!-- Moon Icon (Dark Mode active) -->
+                    <svg class="moon-icon" viewBox="0 0 24 24">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>
+                    <!-- Sun Icon (Light Mode active) -->
+                    <svg class="sun-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                    </svg>
+                </button>
+                <button onclick="window.print()" class="btn btn-primary" id="printBtn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    <span>Print PDF</span>
+                </button>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <h1 class="hero-name">RABBY FOZLE</h1>
+                <h2 class="hero-title">Computer Software Student</h2>
+                <p class="hero-description">
+                    Developing lightweight, visually stunning web experiences. Specializing in glassmorphic interfaces, interactive UI controllers, and robust client-side software systems.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">
+                        <span>View Projects</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="#about" class="btn btn-secondary">More About Me</a>
+                </div>
+
+                <div class="hero-contact">
+                    <a href="mailto:rabbyfozle546@gmail.com" class="contact-item" id="contactEmail">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>rabbyfozle546@gmail.com</span>
+                    </a>
+                    <a href="https://rabby149.github.io" target="_blank" rel="noopener noreferrer" class="contact-item" id="contactGithub">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                        <span>rabby149.github.io</span>
+                    </a>
+                    <span class="contact-item" id="contactLocation">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>Seoul, South Korea</span>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="visual-container">
+                    <div class="visual-outline"></div>
+                    <div class="visual-outline-2"></div>
+                    <div class="profile-card">
+                        <div class="avatar-wrapper">
+                            <div class="avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="profile-card-name">RABBY FOZLE</div>
+                        <div class="profile-card-id">ID: 202616323</div>
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            <span>Designing Interfaces</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="reveal">
+        <h2 class="section-title">About <span>Me</span></h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I am a passionate learner and aspiring developer who enjoys exploring the world of coding and web design. My current focus is on strengthening frontend fundamentals, learning modern UI layouts, and turning creative ideas into practical code.
+                </p>
+                <p>
+                    I enjoy building simple projects that help reinforce programming concepts. Currently, I am dedicated to mastering HTML, CSS, and core JavaScript concepts to create functional web components and gradually move toward full-scale software development.
+                </p>
+            </div>
+            <div class="about-stats">
+                <div class="glass-card stat-card">
+                    <div class="stat-number">Learning</div>
+                    <div class="stat-label">Years Coding</div>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Projects Built</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="reveal">
+        <h2 class="section-title">Featured <span>Projects</span></h2>
+        <div class="projects-grid">
+            <!-- Project 1 (Daily Expense Tracker) -->
+            <div class="glass-card project-card">
+                <div class="project-top">
+                    <div class="project-icon-wrapper">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="project-title">Daily Expense Tracker</h3>
+                    <p class="project-desc">
+                        Interactive budgeting interface designed using custom glassmorphic cards. Supports real-time calculation, custom categories, currency switches (USD, KRW, EUR), threshold warning systems (80% limits), and responsive keyboard bindings.
+                    </p>
+                </div>
+                <div>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML5</span>
+                        <span class="project-tag">Outfit Font</span>
+                        <span class="project-tag">Vanilla JS</span>
+                        <span class="project-tag">DOM Manipulation</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="daily_expense.html" class="project-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"></path>
+                            </svg>
+                            <span>Live App</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 (Custom Web Audio Aura Synth) -->
+            <div class="glass-card project-card">
+                <div class="project-top">
+                    <div class="project-icon-wrapper">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2v20M17 5v14M22 9v6M7 8v8M2 10v4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="project-title">Aura Web Synthesizer</h3>
+                    <p class="project-desc">
+                        A browser-based, touch-enabled sound synthesizer using the Web Audio API. Renders acoustic oscillations into responsive neon-colored svg wave paths while mapping frequency sweeps onto coordinate grids.
+                    </p>
+                </div>
+                <div>
+                    <div class="project-tags">
+                        <span class="project-tag">Web Audio API</span>
+                        <span class="project-tag">SVG Filter</span>
+                        <span class="project-tag">ES6</span>
+                        <span class="project-tag">Canvas</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                            <span>Source Code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 (AI-Assisted Task Coordinator) -->
+            <div class="glass-card project-card">
+                <div class="project-top">
+                    <div class="project-icon-wrapper">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h3 class="project-title">AI Task Coordinator</h3>
+                    <p class="project-desc">
+                        Lightweight web app that uses localStorage and prompt tokens to let users schedule and manage local workflows. Built to support subtask branching and direct file exports.
+                    </p>
+                </div>
+                <div>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML5</span>
+                        <span class="project-tag">JSON</span>
+                        <span class="project-tag">File System API</span>
+                        <span class="project-tag">CSS Grid</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                            <span>Source Code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="reveal">
+        <h2 class="section-title">Education & <span>History</span></h2>
+        <div class="timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023 - Present</div>
+                <h3 class="timeline-title">B.Sc. in Computer Software Engineering</h3>
+                <h4 class="timeline-subtitle">Konkuk University | Seoul, South Korea</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+            <p class="copyright">&copy; 2026 RABBY FOZLE. Built with Outfit & Fira Code.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Floating Quick Social Button -->
+    <div class="floating-contact">
+        <button class="floating-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Scroll to top">
+            <svg viewBox="0 0 24 24">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Page Logic Scripts -->
+    <script>
+        // Header styling change on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Toggle Theme Logic (Light Mode / Dark Mode)
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+
+        document.body.setAttribute('data-theme', currentTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            let activeTheme = document.body.getAttribute('data-theme');
+            let newTheme = activeTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Responsive Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        const navLinksList = document.querySelectorAll('.nav-links a');
+        navLinksList.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Reveal sections on scroll using Intersection Observer
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        reveals.forEach(reveal => {
+            revealObserver.observe(reveal);
+        });
+
+        // Update active nav link during scroll
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let currentSec = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 250)) {
+                    currentSec = section.getAttribute('id');
+                }
+            });
+
+            navLinksList.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSec}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
