@@ -234,6 +234,207 @@
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
 
+        /* History Modal and Layout Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(15, 12, 41, 0.65);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: rgba(30, 27, 75, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 24px;
+            background: linear-gradient(to right, #a8c0ff, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            color: #cbd5e1;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #f87171;
+        }
+
+        .history-list-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 5px;
+        }
+
+        .history-item-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .history-item-card:hover {
+            background: rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .history-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .history-card-title {
+            font-size: 13px;
+            color: #b0b0c0;
+            font-weight: 400;
+        }
+
+        .history-card-status {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .status-success { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+        .status-warning { background: rgba(250, 204, 21, 0.15); color: #facc15; border: 1px solid rgba(250, 204, 21, 0.3); }
+        .status-danger { background: rgba(248, 113, 113, 0.15); color: #f87171; border: 1px solid rgba(248, 113, 113, 0.3); }
+
+        .history-card-body {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-card-amounts {
+            font-size: 15px;
+            font-weight: 400;
+            color: #ffffff;
+        }
+
+        .history-card-amounts strong {
+            font-weight: 600;
+        }
+
+        .history-card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            padding: 6px 10px;
+            color: #cbd5e1;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+            box-shadow: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-family: inherit;
+        }
+
+        .btn-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-icon.delete:hover {
+            background: rgba(248, 113, 113, 0.15);
+            color: #f87171;
+        }
+
+        .btn-icon.restore:hover {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+        }
+
+        .history-card-details {
+            margin-top: 12px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .history-card-details.active {
+            display: block;
+        }
+
+        .history-detail-item {
+            display: flex;
+            justify-content: space-between;
+            color: #cbd5e1;
+            margin-bottom: 5px;
+        }
+
+        .no-history {
+            text-align: center;
+            color: #cbd5e1;
+            padding: 30px 10px;
+            font-style: italic;
+            font-size: 15px;
+        }
     </style>
 </head>
 <body>
@@ -286,6 +487,21 @@
         <button onclick="resetForm()" class="btn-reset" id="resetBtn">Reset All</button>
     </div>
     <div id="resultMessage" class="result-message"></div>
+    <button onclick="openHistory()" class="btn-secondary" style="margin-top: 15px;" id="historyBtn">See History</button>
+</div>
+
+<!-- History Modal -->
+<div id="historyModal" class="modal" onclick="closeHistoryOnOutsideClick(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h2>Calculation History</h2>
+            <span class="close-btn" onclick="closeHistory()">&times;</span>
+        </div>
+        <div id="historyListContainer" class="history-list-container">
+            <!-- Dynamic history items will be injected here -->
+        </div>
+        <button onclick="clearHistory()" class="btn-reset" style="width: 100%; margin-top: 0;">Clear All History</button>
+    </div>
 </div>
 
 <script>
@@ -359,6 +575,7 @@
         }
 
         const totalSpent = expenses.reduce((sum, current) => sum + current.amount, 0);
+        let status = '';
 
         if (totalSpent <= budget) {
             const remaining = (budget - totalSpent).toFixed(2);
@@ -367,17 +584,21 @@
             if (spentPercentage >= 80) {
                 resultDiv.innerText = `Careful! You spent a total of ${currencySym}${totalSpent.toFixed(2)}. You are nearing your limit. ${currencySym}${remaining} left.`;
                 resultDiv.className = 'result-message result-warning';
+                status = 'Warning';
             } else {
                 resultDiv.innerText = `You spent ${currencySym}${totalSpent.toFixed(2)} in total. You have ${currencySym}${remaining} left.`;
                 resultDiv.className = 'result-message result-success';
+                status = 'Under Budget';
             }
         } else {
             const overspent = (totalSpent - budget).toFixed(2);
             resultDiv.innerText = `You overspent! Total is ${currencySym}${totalSpent.toFixed(2)}, exceeding your budget by ${currencySym}${overspent}.`;
             resultDiv.className = 'result-message result-danger';
+            status = 'Overspent';
         }
         
         showResult();
+        saveSessionToHistory(budget, totalSpent, currencySym, status, expenses);
     }
 
     function showResult() {
@@ -420,6 +641,154 @@
     document.getElementById('currencySelect').addEventListener('change', function() {
         renderExpenses(this.value);
     });
+
+    // --- History Helper Functions ---
+
+    // Save a completed session to history in localStorage
+    function saveSessionToHistory(budget, totalSpent, currencySym, status, expensesList) {
+        let history = JSON.parse(localStorage.getItem('expenseHistory')) || [];
+        
+        const timestamp = new Date().toLocaleString();
+        
+        const session = {
+            timestamp: timestamp,
+            budget: budget,
+            totalSpent: totalSpent,
+            currency: currencySym,
+            status: status,
+            expenses: JSON.parse(JSON.stringify(expensesList))
+        };
+        
+        history.unshift(session);
+        localStorage.setItem('expenseHistory', JSON.stringify(history));
+    }
+
+    // Modal Control Functions
+    function openHistory() {
+        const modal = document.getElementById('historyModal');
+        renderHistory();
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    }
+
+    function closeHistory() {
+        const modal = document.getElementById('historyModal');
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    }
+
+    function closeHistoryOnOutsideClick(event) {
+        closeHistory();
+    }
+
+    // Toggle Details of a history item
+    function toggleHistoryDetails(index) {
+        const detailsDiv = document.getElementById(`details-${index}`);
+        if (detailsDiv) {
+            detailsDiv.classList.toggle('active');
+        }
+    }
+
+    // Render history items in the modal
+    function renderHistory() {
+        const container = document.getElementById('historyListContainer');
+        const history = JSON.parse(localStorage.getItem('expenseHistory')) || [];
+        
+        if (history.length === 0) {
+            container.innerHTML = '<div class="no-history">No calculation history found. Make a calculation to save history!</div>';
+            return;
+        }
+        
+        container.innerHTML = '';
+        
+        history.forEach((session, index) => {
+            const card = document.createElement('div');
+            card.className = 'history-item-card';
+            
+            let statusClass = 'status-success';
+            if (session.status === 'Warning') {
+                statusClass = 'status-warning';
+            } else if (session.status === 'Overspent') {
+                statusClass = 'status-danger';
+            }
+            
+            // Generate details HTML
+            let detailsHtml = '';
+            if (session.expenses && session.expenses.length > 0) {
+                detailsHtml = session.expenses.map(exp => `
+                    <div class="history-detail-item">
+                        <span>• ${exp.category}</span>
+                        <span>${session.currency}${exp.amount.toFixed(2)}</span>
+                    </div>
+                `).join('');
+            } else {
+                detailsHtml = '<div style="color: #cbd5e1; font-style: italic;">No item details.</div>';
+            }
+            
+            card.innerHTML = `
+                <div class="history-card-header" onclick="toggleHistoryDetails(${index})">
+                    <span class="history-card-title">${session.timestamp}</span>
+                    <span class="history-card-status ${statusClass}">${session.status}</span>
+                </div>
+                <div class="history-card-body">
+                    <div class="history-card-amounts">
+                        Spent: <strong>${session.currency}${session.totalSpent.toFixed(2)}</strong> / Budget: ${session.currency}${session.budget.toFixed(2)}
+                    </div>
+                    <div class="history-card-actions">
+                        <button onclick="restoreSession(${index}); event.stopPropagation();" class="btn-icon restore" title="Restore this session">Restore</button>
+                        <button onclick="deleteHistoryItem(${index}); event.stopPropagation();" class="btn-icon delete" title="Delete entry">Delete</button>
+                    </div>
+                </div>
+                <div id="details-${index}" class="history-card-details">
+                    ${detailsHtml}
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Restore a previous session
+    function restoreSession(index) {
+        const history = JSON.parse(localStorage.getItem('expenseHistory')) || [];
+        if (!history[index]) return;
+        
+        const session = history[index];
+        
+        // Load into form values
+        document.getElementById('budgetInput').value = session.budget;
+        document.getElementById('currencySelect').value = session.currency;
+        
+        // Load expenses array
+        expenses = JSON.parse(JSON.stringify(session.expenses));
+        renderExpenses(session.currency);
+        
+        // Hide result message
+        const resultDiv = document.getElementById('resultMessage');
+        resultDiv.style.opacity = 0;
+        resultDiv.style.display = 'none';
+        
+        closeHistory();
+    }
+
+    // Delete a specific history entry
+    function deleteHistoryItem(index) {
+        let history = JSON.parse(localStorage.getItem('expenseHistory')) || [];
+        history.splice(index, 1);
+        localStorage.setItem('expenseHistory', JSON.stringify(history));
+        renderHistory();
+    }
+
+    // Clear all history
+    function clearHistory() {
+        if (confirm('Are you sure you want to clear all calculation history?')) {
+            localStorage.removeItem('expenseHistory');
+            renderHistory();
+        }
+    }
 </script>
     <a href="resume.html" target="_blank" style="position: fixed; top: 20px; right: 20px; z-index: 999; padding: 10px 15px; background: #333; color: #fff; border-radius: 5px; text-decoration: none; font-family: sans-serif;">Resume</a>
 </body>
